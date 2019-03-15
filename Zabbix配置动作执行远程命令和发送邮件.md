@@ -7,32 +7,32 @@ catagorize: zabbix
 当有事件发生，我们可以根据事件来执行相应的动作，根据事件来源可以分为触发器动作，自动发现动作，自动注册动作，内部事件动作，自动发现动作在之前的自动发现那里讲过了，这里介绍一下触发器动作，当触发器事件达到执行动作的必要条件，会执行相应的动作
 ### 1.配置邮件告警动作
 首先创建一个触发器动作，触发报警会发送邮件
- ![](https://s1.51cto.com/images/blog/201903/15/bec77ec964ee1ca8ea33702d021693f1.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
+![](https://s1.51cto.com/images/blog/201903/15/bec77ec964ee1ca8ea33702d021693f1.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
 定义动作触发条件
- ![](https://s1.51cto.com/images/blog/201903/15/4d236b3bea064d542570f85925167534.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
+![](https://s1.51cto.com/images/blog/201903/15/4d236b3bea064d542570f85925167534.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
 定义动作执行的操作，这里是执行发送消息的操作，步骤1-5表示会发送5次消息，默认每次的间隔是30分钟
- ![](https://s1.51cto.com/images/blog/201903/15/ebf1dba4c3c83b09a91104432c49e4b0.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
+![](https://s1.51cto.com/images/blog/201903/15/ebf1dba4c3c83b09a91104432c49e4b0.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
 这里我们定义了1-5步执行的操作，就是每隔30分钟，将消息通过‘zabbix_send.py’这个脚本发送给Admin用户
- ![](https://s1.51cto.com/images/blog/201903/15/118e46c361fbfcde675ae4b43979a52e.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
+![](https://s1.51cto.com/images/blog/201903/15/118e46c361fbfcde675ae4b43979a52e.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
 如果问题两个小时之内没有确认，则会将在两个小时之后每隔十五分钟一次通知zabbix管理组，共发送两次消息
- ![](https://s1.51cto.com/images/blog/201903/15/95f84e87e22bb88669eb2317d4719d08.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
+![](https://s1.51cto.com/images/blog/201903/15/95f84e87e22bb88669eb2317d4719d08.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
 这里看到两个操作的步骤五重叠了，这里较短的自定义步骤持续时间为10分钟的会覆盖较长的步骤持续时间，也就是说第二个操作的5步骤会覆盖第一个操作的5步骤
- ![](https://s1.51cto.com/images/blog/201903/15/bd95689932ce806d74057992f95abc1d.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
+![](https://s1.51cto.com/images/blog/201903/15/bd95689932ce806d74057992f95abc1d.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
 定义恢复操作，问题解决之后会发送消息给Admin用户
- ![](https://s1.51cto.com/images/blog/201903/15/e3a46f7fa771a7c6f2082d7a9d43a51f.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
+![](https://s1.51cto.com/images/blog/201903/15/e3a46f7fa771a7c6f2082d7a9d43a51f.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
 定义更新操作，当其他用户更新问题时收到通知，比如问题被关闭，或者问题严重程度发生变化
- ![](https://s1.51cto.com/images/blog/201903/15/b6ecc7729efe9c916e004b850305f005.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
+![](https://s1.51cto.com/images/blog/201903/15/b6ecc7729efe9c916e004b850305f005.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
 到这里动作部分就完成了，如果要让其成功发送邮件，还需要配置用户和报警媒介
 #### 配置用户
- ![](https://s1.51cto.com/images/blog/201903/15/c329db7b54acf164bd8346f4cdbdbc31.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
+![](https://s1.51cto.com/images/blog/201903/15/c329db7b54acf164bd8346f4cdbdbc31.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
 配置用户报警媒介
- ![](https://s1.51cto.com/images/blog/201903/15/5a404ff44f5384a66c9905b0b39234c2.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
+![](https://s1.51cto.com/images/blog/201903/15/5a404ff44f5384a66c9905b0b39234c2.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
 配置用户的收件人等信息
- ![](https://s1.51cto.com/images/blog/201903/15/6b8bf3170c1b722346cf3df3379b8630.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
+![](https://s1.51cto.com/images/blog/201903/15/6b8bf3170c1b722346cf3df3379b8630.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
 #### 创建报警媒介类型
- ![](https://s1.51cto.com/images/blog/201903/15/5f54c13a0eaa44f20e76086ba8d4aae2.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
+![](https://s1.51cto.com/images/blog/201903/15/5f54c13a0eaa44f20e76086ba8d4aae2.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
 配置报警媒介类型，传入的三个参数分别为收件人，邮件主题，邮件内容
- ![](https://s1.51cto.com/images/blog/201903/15/51d32240010ff362964a98b2eabebd8d.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
+![](https://s1.51cto.com/images/blog/201903/15/51d32240010ff362964a98b2eabebd8d.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
 zabbix邮件报警的web界面配置完成了，还需要修改zabbix_server的配置文件，来支持使用脚本
 vim /etc/zabbix/zabbix_server.conf
 `AlertScriptsPath=/usr/lib/zabbix/alertscripts`
@@ -188,18 +188,18 @@ systemctl restart sshd
 对脚本授予可执行权限
 `chmod +x /restart_sshd.sh`
 #### 创建ssh的监控项
- ![](https://s1.51cto.com/images/blog/201903/15/8c8fe8c443c6fa4cc1ed7217ca02c587.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
+![](https://s1.51cto.com/images/blog/201903/15/8c8fe8c443c6fa4cc1ed7217ca02c587.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
 #### 创建触发器
- ![](https://s1.51cto.com/images/blog/201903/15/a1c5371158e77f50c3b0b0b6643be330.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
+![](https://s1.51cto.com/images/blog/201903/15/a1c5371158e77f50c3b0b0b6643be330.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
 ![](https://s1.51cto.com/images/blog/201903/15/f09933f5fd1ad3354bebe7cf2ffb56fc.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
  
 #### 配置动作
 创建动作
- ![](https://s1.51cto.com/images/blog/201903/15/8946fa581094fd278a6180fdaabc09fb.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
+![](https://s1.51cto.com/images/blog/201903/15/8946fa581094fd278a6180fdaabc09fb.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
 配置动作触发条件
- ![](https://s1.51cto.com/images/blog/201903/15/bb749c0fa4c094d14beca9c65cdc8091.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
+![](https://s1.51cto.com/images/blog/201903/15/bb749c0fa4c094d14beca9c65cdc8091.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
 配置动作执行的命令，这里为了方便查看效果，延迟两分钟执行
- ![](https://s1.51cto.com/images/blog/201903/15/b8880072177d5d68e9cdf130dab2fd01.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
+![](https://s1.51cto.com/images/blog/201903/15/b8880072177d5d68e9cdf130dab2fd01.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
 #### 触发报警
 这里关闭ssh服务，使报警触发
 `systemctl stop sshd`
@@ -207,6 +207,6 @@ systemctl restart sshd
 这里可以使用zabbix-get来获取监控的值。来查看是否成功执行命令
 zabbix_get -s 192.168.179.132 -k net.tcp.port[192.168.179.132,22]
 可以看到，zabbix已经成功执行脚本，重启ssh
- ![](https://s1.51cto.com/images/blog/201903/15/b024964935f204d646ecdfa452c177e6.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
+![](https://s1.51cto.com/images/blog/201903/15/b024964935f204d646ecdfa452c177e6.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
 
 
