@@ -109,8 +109,8 @@ def convertohtml(result):
 def datatohtml(list2):
     tables = ''
     for i in range(len(list2)):
-        name,host,severity,count = list2[i]['name'], list2[i]['host'], list2[i]['severity'], list2[i]['count']
-        td = "<td>%s</td> <td>%s</td> <td>%s</td> <td>%s</td>"%(name, host, severity, count)
+        host,name,severity,count = list2[i]['host'], list2[i]['name'], list2[i]['severity'], list2[i]['count']
+        td = "<td>%s</td> <td>%s</td> <td>%s</td> <td>%s</td>"%( host,name, severity, count)
         tables = tables + "<tr>%s</tr>"%td
     base_html="""
     <!DOCTYPE html>
