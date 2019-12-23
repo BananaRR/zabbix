@@ -6,7 +6,7 @@ import json,sys,re,os
 
 
 zabbixserver_url ='http://192.168.99.200/index.php'
-pname_path='http://47.103.14.52/dingding_pic/'
+pname_path='http://47.103.15.51/dingding_pic/'
 host='192.168.99.200'
 def get_itemid():
     #a=re.findall(r"ITEM ID: \d+",info2)
@@ -48,7 +48,7 @@ def get_picture(itemid,pname):
         #f.write(testGraph.content)
         #f.close()
         #pname = 'D:/zyypython/' + pname
-        os.system("sudo scp %s root@47.103.14.52:/usr/share/nginx/html/dingding_pic" %IMAGEPATH) 
+        os.system("sudo scp %s root@47.103.15.51:/usr/share/nginx/html/dingding_pic" %IMAGEPATH) 
         pname_url = pname_path+pname
         
         return pname_url
