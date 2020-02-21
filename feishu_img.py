@@ -6,11 +6,11 @@ messages=sys.argv[3]
 # messages="test"
 # subject="test"
 user='Admin'    #定义zabbix用户名
-password='Centrin_1234'    #定义zabbix用户密码
+password='zabbix'    #定义zabbix用户密码
 graph_path='/usr/lib/zabbix/alertscripts/graph'   #定义图片存储路径
-graph_url='http://192.168.99.200/chart.php'     #定义图表的url
-host="192.168.99.200"
-loginurl="http://192.168.99.200/index.php"          #定义登录的url
+graph_url='http://192.168.99.2/chart.php'     #定义图表的url
+host="192.168.99.2"
+loginurl="http://192.168.99.2/index.php"          #定义登录的url
 image_path=r"C:\Users\Administrator\Desktop\4.png"
 def get_itemid():
     #获取报警的itemid
@@ -20,8 +20,8 @@ def gettenant_access_token():
     tokenurl="https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal/"
     headers={"Content-Type":"application/json"}
     data={
-        "app_id":"cli_9ec6258e80b5d00e",
-        "app_secret":"f716Gi27Yi25n5K0WbaKpfrty0j81ujl"
+        "app_id":"cli_9ec62123e80b5d00e",
+        "app_secret":"f716Gi27Yi25n5wertaKpfrty0j81ujl"
 
     }
     request=requests.post(url=tokenurl,headers=headers,json=data)
