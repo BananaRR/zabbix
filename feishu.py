@@ -3,7 +3,7 @@
 import requests,json,sys
 mobiles=sys.argv[1]
 subject=sys.argv[2]
-messages=sys.argvp[3]
+messages=sys.argv[3]
 def gettenant_access_token():
     tokenurl="https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal/"
     headers={"Content-Type":"application/json"}

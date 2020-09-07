@@ -2,7 +2,7 @@ import requests,json,sys,re,time,os
 mobiles=sys.argv[1]
 subject=sys.argv[2]
 messages=sys.argv[3]
-# mobiles="15101171027"
+# mobiles="151011241027"
 # messages="test"
 # subject="test"
 user='Admin'    #定义zabbix用户名
